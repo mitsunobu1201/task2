@@ -1,13 +1,13 @@
 <%= flash[:notice] %>
-<div>
+<div class="show">
 <strong>Title:</strong>
 <%= @book.title %>
 </div>
-<div>
+<div div class="show">
 <strong>Body:</strong>
 <%= @book.body %>
 </div>
 
 
-<a href="<%= @book.id %>/edit">Edit</a>
-<a href="../books">Back</a>
+<a href="/books/<%= @book.id %>/edit">Edit</a> | 
+<a href="../books/">Back</a>
