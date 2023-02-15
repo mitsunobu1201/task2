@@ -1,3 +1,4 @@
+<%= flash[:notice] %>
 <h1>Books</h1>
 
   <table>
@@ -17,8 +18,8 @@
        <td><%= book.title %></td>
        <td><%= book.body %></td>
        <td><a href="books/<%= book.id %>">Show</a></td>
-       <td><a href="edit">Edit</a></td>
-       <td><a href="destroy">Destroy</a></td>
+       <td><a href="books/<%= book.id %>/edit">Edit</a></td>
+        <td><%= link_to "Destroy", destroy_book_path(book), method: :delete, "data-confirm" => "Are you sure?" %></td>
      </tr>
    </tbody>
    <% end %>
@@ -27,7 +28,16 @@
 
 <h2>New book</p>
 
-<!-- form_with部分 -->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_with model: @book do |f| %>
   <p>タイトル</p>
   <%= f.text_field :title %>
